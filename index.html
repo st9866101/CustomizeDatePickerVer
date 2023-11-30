@@ -93,7 +93,7 @@
                             key={currentDay.format('YYYY-MM-DD')}
                             className={clickedArray.includes(dayContent) && dayContentCss !== 'nonCurrentMonth' ? `${dayContentCss} dayRange`
                                 : dayContentCss}
-                            onClick={() => handleDateClick(dayContent)}
+                            onClick={() => (dayContentCss !== 'nonCurrentMonth') && handleDateClick(dayContent)}
                         >
                             {dayContent}日
                         </td>
@@ -112,10 +112,12 @@
 
             const prevMonth = () => {
                 setCurrentDate(currentDate.clone().subtract(1, 'month'));
+                setClickedArray([]);
             };
 
             const nextMonth = () => {
                 setCurrentDate(currentDate.clone().add(1, 'month'));
+                setClickedArray([]);
             };
             return (
                 <div>
